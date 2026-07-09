@@ -1,0 +1,38 @@
+---
+title: Blog
+description: Artículos y guías sobre desarrollo web.
+layout: base.njk
+scripts: ['blog']
+---
+
+<section class="seccion">
+  <h1>Blog</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+
+  <div class="filtros-blog" role="group" aria-label="Filtrar artículos">
+    <button class="filtro-btn activo" data-filtro="todas">Todas</button>
+    <button class="filtro-btn" data-filtro="optimizacion">Optimización</button>
+    <button class="filtro-btn" data-filtro="estatico">Estático</button>
+    <button class="filtro-btn" data-filtro="eleventy">Eleventy</button>
+  </div>
+
+  <div class="grid-tarjetas">
+    <article class="tarjeta" data-categoria="optimizacion,web">
+      {% image "src/assets/images/blog/thumbnail/guia-optimizacion-web.jpg", "Miniatura del artículo guía de optimización web" %}
+      <h2><a href="/blog/guia-optimizacion-web/">Guía de Optimización Web</a></h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+    </article>
+
+    <article class="tarjeta" data-categoria="estatico,web">
+      {% image "src/assets/images/blog/thumbnail/que-es-un-sitio-estatico.jpg", "Miniatura del artículo sobre sitios estáticos" %}
+      <h2><a href="/blog/que-es-un-sitio-estatico/">¿Qué es un Sitio Estático?</a></h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+    </article>
+
+    <article class="tarjeta" data-categoria="eleventy,estatico">
+      {% image "src/assets/images/blog/thumbnail/beneficios-eleventy.jpg", "Miniatura del artículo sobre beneficios de Eleventy" %}
+      <h2><a href="/blog/beneficios-eleventy/">Beneficios de Eleventy</a></h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+    </article>
+  </div>
+</section>

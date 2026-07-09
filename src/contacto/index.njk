@@ -1,0 +1,26 @@
+---
+title: Contacto
+description: Ponte en contacto con nosotros.
+layout: base.njk
+scripts: ['form']
+---
+
+<article>
+  <h1>Contacto</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nos pondremos en contacto contigo a la brevedad.</p>
+
+  <form id="form-contacto" action="https://formspree.io/f/tu-id" method="POST">
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="mensaje">Mensaje</label>
+    <textarea id="mensaje" name="mensaje" required></textarea>
+
+    <button type="submit" class="btn">Enviar mensaje</button>
+  </form>
+
+  <div id="form-notificacion" class="form-notificacion" aria-live="polite"></div>
+</article>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+  <meta name="description" content="{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}">
+
+  <link rel="preload" href="/assets/fonts/fuente-principal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <style>{% criticalCss %}</style>
+</head>
+<body>
+
+  <a href="#main-content" class="saltar-navegacion">Saltar al contenido principal</a>
+
+  <header>
+    <nav aria-label="Navegación principal">
+      <a href="/" class="logo">{{ site.name }}</a>
+      <ul>
+        {% for item in site.nav %}
+        <li><a href="{{ item.url }}" {% if page.url === item.url %}aria-current="page"{% endif %}>{{ item.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    {{ content | safe }}
+  </main>
+
+  <footer>
+    <p>&copy; {{ site.name }} — Todos los derechos reservados.</p>
+    <button id="btn-subir" class="btn-subir" aria-label="Volver al inicio">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+  {% if scripts and scripts.includes('form') %}
+  <script src="/assets/js/form.js" defer></script>
+  {% endif %}
+  {% if scripts and scripts.includes('blog') %}
+  <script src="/assets/js/blog.js" defer></script>
+  {% endif %}
+
+</body>
+</html>
