@@ -2,6 +2,7 @@
 title: Inicio
 description: Boilerplate corporativo estático con Eleventy - Rendimiento, Accesibilidad y SEO.
 layout: base.njk
+scripts: ['form']
 ---
 
 {% include "hero.njk" %}
@@ -25,4 +26,10 @@ layout: base.njk
       <a href="/servicios/seo-tecnico/" class="btn" aria-label="Más información sobre Servicio Tres">Saber más</a>
     </article>
   </div>
+</section>
+
+<section class="section" aria-labelledby="heading-presupuesto">
+  <h2 id="heading-presupuesto">Solicitar Presupuesto</h2>
+  <p>Completá el formulario y te contactaremos a la brevedad.</p>
+  {% include "form-presupuesto.njk" %}
 </section>

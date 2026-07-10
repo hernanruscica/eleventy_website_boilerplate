@@ -1,0 +1,17 @@
+<div class="blog-newsletter">
+  <h3 class="blog-newsletter__title">Newsletter</h3>
+  <p class="blog-newsletter__text">Recibí promociones y tips útiles para potenciar tu negocio online.</p>
+  <form class="blog-newsletter__form" action="{{ site.forms.newsletter.action }}" method="post" data-ajax-form>
+    <input type="hidden" name="_subject" value="{{ site.forms.newsletter.subject }}">
+    <div class="blog-newsletter__field">
+      <label for="newsletter-nombre" class="blog-newsletter__label">Tu nombre</label>
+      <input type="text" name="nombre" id="newsletter-nombre" class="blog-newsletter__input" placeholder="Tu nombre" required>
+    </div>
+    <div class="blog-newsletter__field">
+      <label for="newsletter-email" class="blog-newsletter__label">Tu correo electrónico</label>
+      <input type="email" name="email" id="newsletter-email" class="blog-newsletter__input" placeholder="Tu correo electrónico" required>
+    </div>
+    <button type="submit" class="blog-newsletter__btn">Suscribirme</button>
+    <div class="form-notification" aria-live="polite"></div>
+  </form>
+</div>

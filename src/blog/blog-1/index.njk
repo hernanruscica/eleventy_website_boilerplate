@@ -1,0 +1,32 @@
+---
+title: Beneficios de Eleventy
+description: Por qué Eleventy es una excelente opción para sitios estáticos modernos.
+layout: base.njk
+scripts: ['form']
+heroImage: pexels-mart-production-8872592.jpg
+heroTitle: "Nuestros artículos del blog"
+date: 2026-06-05
+author: Autor 1
+category: Categoría 1
+---
+
+{% include "hero-simple.njk" %}
+
+<section class="section">
+  <div class="blog-layout">
+    <div class="blog-layout__main">
+      <article class="blog-post">
+        <h1 class="blog-post__title">{{ title }}</h1>
+        <p class="blog-post__byline">
+          Publicado por <strong>{{ author }}</strong> el <strong>{{ date | dateLong }}</strong>.
+        </p>
+        {% image "src/assets/images/blog/blog-1/blog-1.jpg", "Imagen representativa de blog-1", "blog_image" %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+        <a href="/blog/" class="btn">&larr; Volver al blog</a>
+      </article>
+    </div>
+    {% include "post-sidebar.njk" %}
+  </div>
+</section>

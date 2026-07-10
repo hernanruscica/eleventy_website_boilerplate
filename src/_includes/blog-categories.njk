@@ -1,0 +1,8 @@
+{% set categories = posts | uniqueCategories %}
+<div class="blog-filters" role="group" aria-label="Filtrar artículos">
+  <p class="blog-filters__title">Categorías</p>
+  <button class="filter-btn active" data-filter="all">Todas</button>
+  {% for cat in categories %}
+    <button class="filter-btn" data-filter="{{ cat | lower }}">{{ cat }}</button>
+  {% endfor %}
+</div>

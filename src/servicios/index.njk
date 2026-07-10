@@ -2,6 +2,7 @@
 title: Servicios
 description: Conoce nuestros servicios profesionales.
 layout: base.njk
+scripts: ['form']
 heroImage: pexels-magnetme-3917414-5839461.jpg
 ---
 
@@ -21,4 +22,10 @@ heroImage: pexels-magnetme-3917414-5839461.jpg
       </article>
     {% endfor %}
   </div>
+</section>
+
+<section class="section" aria-labelledby="heading-presupuesto">
+  <h2 id="heading-presupuesto">Solicitar Presupuesto</h2>
+  <p>Completá el formulario y te contactaremos a la brevedad.</p>
+  {% include "form-presupuesto.njk" %}
 </section>

@@ -1,0 +1,42 @@
+<form class="form-presupuesto" action="{{ site.forms.presupuesto.action }}" method="post" data-ajax-form>
+  <input type="hidden" name="_subject" value="{{ site.forms.presupuesto.subject }}">
+
+  <div class="form-presupuesto__row">
+    <div class="form-presupuesto__field">
+      <label for="presupuesto-nombre" class="form-presupuesto__label">Su nombre</label>
+      <input type="text" name="nombre" id="presupuesto-nombre" class="form-presupuesto__input" placeholder="Su nombre" required>
+    </div>
+  </div>
+
+  <div class="form-presupuesto__row">
+    <div class="form-presupuesto__field">
+      <label for="presupuesto-email" class="form-presupuesto__label">Su correo electrónico</label>
+      <input type="email" name="email" id="presupuesto-email" class="form-presupuesto__input" placeholder="Su correo electrónico" required>
+    </div>
+  </div>
+
+  <div class="form-presupuesto__row">
+    <div class="form-presupuesto__field">
+      <label for="presupuesto-servicio" class="form-presupuesto__label">Servicio</label>
+      <select name="servicio" id="presupuesto-servicio" class="form-presupuesto__select" required>
+        <option selected disabled value="">Seleccione un servicio</option>
+        {% for service in site.services %}
+          <option value="{{ service.title }}">{{ service.title }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-presupuesto__row">
+    <div class="form-presupuesto__field">
+      <label for="presupuesto-mensaje" class="form-presupuesto__label">Mensaje</label>
+      <textarea name="mensaje" id="presupuesto-mensaje" class="form-presupuesto__textarea" rows="3" placeholder="Mensaje"></textarea>
+    </div>
+  </div>
+
+  <div class="form-presupuesto__row">
+    <button type="submit" class="btn form-presupuesto__btn">Solicitar presupuesto</button>
+  </div>
+
+  <div class="form-notification" aria-live="polite"></div>
+</form>

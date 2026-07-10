@@ -1,8 +1,9 @@
 {% set heroPath = "src/assets/images/hero/" + heroImage %}
+{% set displayTitle = heroTitle if heroTitle else title %}
 
 <section class="hero-simple">
-  {% image heroPath, title, "hero_image", "eager" %}
+  {% image heroPath, displayTitle, "hero_image", "eager" %}
   <div class="hero-simple__content">
-    <h1>{{ title }}</h1>
+    <h1>{{ displayTitle }}</h1>
   </div>
 </section>

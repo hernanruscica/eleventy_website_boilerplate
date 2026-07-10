@@ -9,7 +9,7 @@ scripts: ['form']
   <h1>Contacto</h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nos pondremos en contacto contigo a la brevedad.</p>
 
-  <form id="form-contact" action="https://formspree.io/f/tu-id" method="POST">
+  <form id="form-contact" action="{{ site.forms.contact.action }}" method="POST" data-ajax-form>
     <label for="name">Nombre</label>
     <input type="text" id="name" name="name" required>
 

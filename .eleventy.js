@@ -17,6 +17,30 @@ module.exports = function (eleventyConfig) {
     return new CleanCSS({}).minify(code).styles;
   });
 
+  // --- FILTER uniqueCategories ---
+  eleventyConfig.addFilter("uniqueCategories", function (posts) {
+    const seen = [];
+    posts.forEach(function (p) {
+      if (!seen.includes(p.category)) seen.push(p.category);
+    });
+    return seen;
+  });
+
+  // --- FILTER dateLong ---
+  eleventyConfig.addFilter("dateLong", function (date) {
+    const months = [
+      "enero", "febrero", "marzo", "abril", "mayo", "junio",
+      "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+    ];
+    var d;
+    if (date instanceof Date) {
+      d = date;
+    } else {
+      d = new Date(date + "T12:00:00");
+    }
+    return d.getUTCDate() + " de " + months[d.getUTCMonth()] + " de " + d.getUTCFullYear();
+  });
+
   // --- SHORTCODE criticalCss ---
   eleventyConfig.addShortcode("criticalCss", function () {
     const cssPath = path.join(__dirname, "src/assets/css/main.css");

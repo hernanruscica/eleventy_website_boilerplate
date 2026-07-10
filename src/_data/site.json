@@ -38,6 +38,20 @@
       "alt": "Imagen representativa del servicio tres"
     }
   ],
+  "forms": {
+    "newsletter": {
+      "action": "https://formspree.io/f/xandqwkr",
+      "subject": "Newsletter - Nueva suscripción"
+    },
+    "contact": {
+      "action": "https://formspree.io/f/tu-id",
+      "subject": "Contacto - Nuevo mensaje"
+    },
+    "presupuesto": {
+      "action": "https://formspree.io/f/tu-id-2",
+      "subject": "Presupuesto - Nuevo pedido"
+    }
+  },
   "imagePresets": {
     "hero_image": {
       "widths": [1600, 1200, 800, 400],
