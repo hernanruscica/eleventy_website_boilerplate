@@ -1,33 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var form = document.getElementById("form-contacto");
+  var form = document.getElementById("form-contact");
   if (!form) return;
 
-  var notificacion = document.getElementById("form-notificacion");
+  var notification = document.getElementById("form-notification");
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    if (form.classList.contains("form-enviando")) return;
-    form.classList.add("form-enviando");
+    if (form.classList.contains("form-sending")) return;
+    form.classList.add("form-sending");
 
-    if (notificacion) {
-      notificacion.className = "form-notificacion";
-      notificacion.style.display = "none";
+    if (notification) {
+      notification.className = "form-notification";
+      notification.style.display = "none";
     }
 
-    var datos = new FormData(form);
+    var data = new FormData(form);
 
     fetch(form.action, {
       method: "POST",
-      body: datos,
+      body: data,
       headers: { Accept: "application/json" },
     })
       .then(function (res) {
         if (res.ok) {
-          if (notificacion) {
-            notificacion.textContent = "Mensaje enviado correctamente. Gracias.";
-            notificacion.className = "form-notificacion exito";
-            notificacion.style.display = "block";
+          if (notification) {
+            notification.textContent = "Mensaje enviado correctamente. Gracias.";
+            notification.className = "form-notification success";
+            notification.style.display = "block";
           }
           form.reset();
         } else {
@@ -35,14 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       })
       .catch(function () {
-        if (notificacion) {
-          notificacion.textContent = "Hubo un error. Inténtalo de nuevo.";
-          notificacion.className = "form-notificacion error";
-          notificacion.style.display = "block";
+        if (notification) {
+          notification.textContent = "Hubo un error. Inténtalo de nuevo.";
+          notification.className = "form-notification error";
+          notification.style.display = "block";
         }
       })
       .finally(function () {
-        form.classList.remove("form-enviando");
+        form.classList.remove("form-sending");
       });
   });
 });

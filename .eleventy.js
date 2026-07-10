@@ -1,6 +1,8 @@
 const CleanCSS = require("clean-css");
 const path = require("path");
 const fs = require("fs");
+const crypto = require("crypto");
+const siteData = require("./src/_data/site.json");
 
 module.exports = function (eleventyConfig) {
   // --- PASSTHROUGH ---
@@ -10,7 +12,7 @@ module.exports = function (eleventyConfig) {
     "src/assets/images": "assets/images",
   });
 
-  // --- FILTRO cssmin ---
+  // --- FILTER cssmin ---
   eleventyConfig.addFilter("cssmin", function (code) {
     return new CleanCSS({}).minify(code).styles;
   });
@@ -22,17 +24,30 @@ module.exports = function (eleventyConfig) {
     return new CleanCSS({}).minify(css).styles;
   });
 
+  // --- SHORTCODE jsTag (cache-busting via MD5 hash) ---
+  eleventyConfig.addShortcode("jsTag", function (file) {
+    const filePath = path.join(__dirname, "src/assets/js", file);
+    const content = fs.readFileSync(filePath, "utf8");
+    const hash = crypto.createHash("md5").update(content).digest("hex").slice(0, 8);
+    return '<script src="/assets/js/' + file + '?_=' + hash + '" defer></script>';
+  });
+
   // --- SHORTCODE image ---
-  eleventyConfig.addShortcode("image", async function (src, alt, sizes = "100vw") {
+  eleventyConfig.addShortcode("image", async function (src, alt, preset = "showcase_image", loading = "lazy") {
     if (alt === undefined) {
       throw new Error(`Missing required 'alt' attribute: ${src}`);
+    }
+
+    const presetConfig = siteData.imagePresets[preset];
+    if (!presetConfig) {
+      throw new Error(`Unknown image preset '${preset}'. Available: ${Object.keys(siteData.imagePresets).join(", ")}`);
     }
 
     const Image = (await import("@11ty/eleventy-img")).default;
     const srcPath = path.join(__dirname, src);
 
     let metadata = await Image(srcPath, {
-      widths: [400, 800, 1200],
+      widths: presetConfig.widths,
       formats: ["avif", "webp", "jpeg"],
       outputDir: path.join(__dirname, "_site/assets/images"),
       urlPath: "/assets/images",
@@ -45,15 +60,21 @@ module.exports = function (eleventyConfig) {
       },
     });
 
-    return Image.generateHTML(metadata, {
+    let html = Image.generateHTML(metadata, {
       alt,
-      sizes,
-      loading: "lazy",
+      sizes: presetConfig.sizes,
+      loading: loading,
       decoding: "async",
     });
+
+    if (loading === "eager") {
+      html = html.replace("<img ", '<img fetchpriority="high" ');
+    }
+
+    return html;
   });
 
-  // --- TRANSFORM htmlmin (solo producción) ---
+  // --- TRANSFORM htmlmin (production only) ---
   if (process.env.NODE_ENV === "production") {
     eleventyConfig.addTransform("htmlmin", async function (content, outputPath) {
       if (!outputPath || !outputPath.endsWith(".html")) {
@@ -74,7 +95,7 @@ module.exports = function (eleventyConfig) {
     });
   }
 
-  // --- TRANSFORM SVGO (solo SVG, producción) ---
+  // --- TRANSFORM SVGO (production only) ---
   if (process.env.NODE_ENV === "production") {
     eleventyConfig.addTransform("svgo", async function (content, outputPath) {
       if (!outputPath || !outputPath.endsWith(".svg")) {
@@ -86,7 +107,7 @@ module.exports = function (eleventyConfig) {
     });
   }
 
-  // --- CONFIGURACIÓN ---
+  // --- ELEVENTY CONFIG ---
   return {
     dir: {
       input: "src",

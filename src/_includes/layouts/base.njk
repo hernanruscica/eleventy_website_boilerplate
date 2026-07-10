@@ -8,13 +8,13 @@
   <title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
   <meta name="description" content="{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}">
 
-  <link rel="preload" href="/assets/fonts/fuente-principal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/mulish-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <style>{% criticalCss %}</style>
 </head>
 <body>
 
-  <a href="#main-content" class="saltar-navegacion">Saltar al contenido principal</a>
+  <a href="#main-content" class="skip-nav">Saltar al contenido principal</a>
 
   <header>
     <nav aria-label="Navegación principal">
@@ -32,20 +32,28 @@
   </main>
 
   <footer>
-    <p>&copy; {{ site.name }} — Todos los derechos reservados.</p>
-    <button id="btn-subir" class="btn-subir" aria-label="Volver al inicio">
+    <div class="footer-content">
+      <p>&copy; {{ site.name }} — Todos los derechos reservados.</p>
+      <div class="social-links">
+        <a href="#" aria-label="LinkedIn" rel="noopener noreferrer">{% include "icons/linkedin.njk" %}</a>
+        <a href="#" aria-label="GitHub" rel="noopener noreferrer">{% include "icons/github.njk" %}</a>
+        <a href="#" aria-label="Twitter / X" rel="noopener noreferrer">{% include "icons/twitter.njk" %}</a>
+        <a href="mailto:hola@ejemplo.com" aria-label="Correo electrónico">{% include "icons/email.njk" %}</a>
+      </div>
+    </div>
+    <button id="btn-top" class="btn-top" aria-label="Volver al inicio">
       <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="18 15 12 9 6 15"></polyline>
       </svg>
     </button>
   </footer>
 
-  <script src="/assets/js/main.js" defer></script>
+  {% jsTag "main.js" %}
   {% if scripts and scripts.includes('form') %}
-  <script src="/assets/js/form.js" defer></script>
+  {% jsTag "form.js" %}
   {% endif %}
   {% if scripts and scripts.includes('blog') %}
-  <script src="/assets/js/blog.js" defer></script>
+  {% jsTag "blog.js" %}
   {% endif %}
 
 </body>

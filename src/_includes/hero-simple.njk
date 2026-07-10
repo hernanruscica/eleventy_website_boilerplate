@@ -1,0 +1,8 @@
+{% set heroPath = "src/assets/images/hero/" + heroImage %}
+
+<section class="hero-simple">
+  {% image heroPath, title, "hero_image", "eager" %}
+  <div class="hero-simple__content">
+    <h1>{{ title }}</h1>
+  </div>
+</section>

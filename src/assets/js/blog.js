@@ -1,24 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var filtros = document.querySelectorAll("[data-filtro]");
-  var entradas = document.querySelectorAll("[data-categoria]");
+  var filters = document.querySelectorAll("[data-filter]");
+  var entries = document.querySelectorAll("[data-category]");
 
-  if (!filtros.length || !entradas.length) return;
+  if (!filters.length || !entries.length) return;
 
-  filtros.forEach(function (btn) {
+  filters.forEach(function (btn) {
     btn.addEventListener("click", function () {
-      var categoria = btn.getAttribute("data-filtro");
+      var category = btn.getAttribute("data-filter");
 
-      filtros.forEach(function (b) {
-        b.classList.remove("activo");
+      filters.forEach(function (b) {
+        b.classList.remove("active");
       });
-      btn.classList.add("activo");
+      btn.classList.add("active");
 
-      entradas.forEach(function (entrada) {
-        var cats = (entrada.getAttribute("data-categoria") || "").split(",");
-        if (categoria === "todas" || cats.indexOf(categoria) !== -1) {
-          entrada.style.display = "";
+      entries.forEach(function (entry) {
+        var cats = (entry.getAttribute("data-category") || "").split(",");
+        if (category === "all" || cats.indexOf(category) !== -1) {
+          entry.style.display = "";
         } else {
-          entrada.style.display = "none";
+          entry.style.display = "none";
         }
       });
     });
