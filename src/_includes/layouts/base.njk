@@ -25,11 +25,16 @@
       <button class="main-nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
         <span class="main-nav__hamburger"></span>
       </button>
-      <ul id="nav-menu" class="main-nav__menu">
-        {% for item in site.nav %}
-        <li><a href="{{ item.url }}" {% if page.url === item.url %}aria-current="page"{% endif %}>{{ item.text }}</a></li>
-        {% endfor %}
-      </ul>
+      <div class="main-nav__wrapper">
+        <ul id="nav-menu" class="main-nav__menu">
+          {% for item in site.nav %}
+          <li><a href="{{ item.url }}" {% if page.url === item.url %}aria-current="page"{% endif %}>{{ item.text }}</a></li>
+          {% endfor %}
+        </ul>
+        <div class="main-nav__social">
+          {% include "social-links.njk" %}
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -40,13 +45,11 @@
   <footer>
     <div class="footer-content">
       <p>&copy; {{ site.name }} — Todos los derechos reservados.</p>
-      <div class="social-links">
-        <a href="#" aria-label="LinkedIn" rel="noopener noreferrer">{% include "icons/linkedin.njk" %}</a>
-        <a href="#" aria-label="GitHub" rel="noopener noreferrer">{% include "icons/github.njk" %}</a>
-        <a href="#" aria-label="Twitter / X" rel="noopener noreferrer">{% include "icons/twitter.njk" %}</a>
-        <a href="mailto:hola@ejemplo.com" aria-label="Correo electrónico">{% include "icons/email.njk" %}</a>
-      </div>
+      {% include "social-links.njk" %}
     </div>
+    <a href="https://wa.me/{{ site.whatsapp }}" class="btn-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+      {% include "icons/whatsapp.njk" %}
+    </a>
     <button id="btn-top" class="btn-top" aria-label="Volver al inicio">
       <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="18 15 12 9 6 15"></polyline>

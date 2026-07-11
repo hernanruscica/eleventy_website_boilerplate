@@ -1,0 +1,9 @@
+<ul class="social-links">
+  {% for item in social %}
+  <li>
+    <a href="{{ item.url }}" aria-label="{{ item.name }}" rel="noopener noreferrer">
+      {% include "icons/" + item.icon + ".njk" %}
+    </a>
+  </li>
+  {% endfor %}
+</ul>

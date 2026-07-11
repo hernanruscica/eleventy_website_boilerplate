@@ -1,42 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
-  /* --- Back to top --- */
+  /* --- Back to top & WhatsApp (shared scroll listener) --- */
   var btnTop = document.getElementById("btn-top");
+  var btnWhats = document.querySelector(".btn-whatsapp");
 
   if (btnTop) {
     btnTop.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-
-    var scrollObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          btnTop.classList.toggle("visible", !entry.isIntersecting);
-        });
-      },
-      { threshold: 0 }
-    );
-
-    scrollObserver.observe(document.body);
   }
+
+  window.addEventListener("scroll", function () {
+    var show = window.scrollY > 300;
+    if (btnTop) btnTop.classList.toggle("visible", show);
+    if (btnWhats) btnWhats.classList.toggle("visible", show);
+  }, { passive: true });
 
   /* --- Mobile nav toggle --- */
   var navToggle = document.querySelector(".main-nav__toggle");
-  var navMenu = document.querySelector(".main-nav__menu");
+  var navWrapper = document.querySelector(".main-nav__wrapper");
 
-  if (navToggle && navMenu) {
+  if (navToggle && navWrapper) {
     navToggle.addEventListener("click", function () {
       var isOpen = navToggle.getAttribute("aria-expanded") === "true";
       navToggle.setAttribute("aria-expanded", String(!isOpen));
       navToggle.classList.toggle("is-active");
-      navMenu.classList.toggle("is-open");
+      navWrapper.classList.toggle("is-open");
     });
 
     /* Close menu when clicking a link */
-    navMenu.addEventListener("click", function (e) {
+    navWrapper.addEventListener("click", function (e) {
       if (e.target.tagName === "A") {
         navToggle.setAttribute("aria-expanded", "false");
         navToggle.classList.remove("is-active");
-        navMenu.classList.remove("is-open");
+        navWrapper.classList.remove("is-open");
       }
     });
   }

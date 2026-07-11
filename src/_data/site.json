@@ -4,6 +4,7 @@
   "baseUrl": "https://ejemplo.com",
   "lang": "es",
   "description": "Boilerplate corporativo estático con Eleventy - Rendimiento, Accesibilidad y SEO.",
+"whatsapp": "5491112345678",
 "hero": {
     "title": "Bienvenido al Boilerplate",
     "subtitle": "Un punto de partida corporativo construido con Eleventy, priorizando rendimiento, accesibilidad y buenas prácticas.",
