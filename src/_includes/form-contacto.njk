@@ -1,0 +1,22 @@
+<form class="form-contacto" action="{{ site.forms.contact.action }}" method="POST" data-ajax-form>
+  <input type="hidden" name="_subject" value="{{ site.forms.contact.subject }}">
+
+  <div class="form-contacto__field">
+    <label for="contacto-nombre" class="form-contacto__label">Nombre</label>
+    <input type="text" id="contacto-nombre" name="name" class="form-contacto__input" placeholder="Tu nombre" required>
+  </div>
+
+  <div class="form-contacto__field">
+    <label for="contacto-email" class="form-contacto__label">Correo electrónico</label>
+    <input type="email" id="contacto-email" name="email" class="form-contacto__input" placeholder="Tu correo electrónico" required>
+  </div>
+
+  <div class="form-contacto__field">
+    <label for="contacto-mensaje" class="form-contacto__label">Mensaje</label>
+    <textarea id="contacto-mensaje" name="message" class="form-contacto__textarea" rows="5" placeholder="Escribí tu mensaje" required></textarea>
+  </div>
+
+  <button type="submit" class="btn form-contacto__btn">Enviar mensaje</button>
+
+  <div class="form-notification" aria-live="polite"></div>
+</form>

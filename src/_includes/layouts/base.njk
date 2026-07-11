@@ -16,10 +16,16 @@
 
   <a href="#main-content" class="skip-nav">Saltar al contenido principal</a>
 
-  <header>
-    <nav aria-label="Navegación principal">
-      <a href="/" class="logo">{{ site.name }}</a>
-      <ul>
+  <header class="site-header">
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="/" class="main-nav__brand">
+        <img src="/assets/images/logo.svg" alt="" class="main-nav__logo" width="36" height="36">
+        <span class="main-nav__site-name">{{ site.name }}</span>
+      </a>
+      <button class="main-nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">
+        <span class="main-nav__hamburger"></span>
+      </button>
+      <ul id="nav-menu" class="main-nav__menu">
         {% for item in site.nav %}
         <li><a href="{{ item.url }}" {% if page.url === item.url %}aria-current="page"{% endif %}>{{ item.text }}</a></li>
         {% endfor %}
