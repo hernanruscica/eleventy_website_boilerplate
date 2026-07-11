@@ -41,6 +41,35 @@ module.exports = function (eleventyConfig) {
     return d.getUTCDate() + " de " + months[d.getUTCMonth()] + " de " + d.getUTCFullYear();
   });
 
+  // --- FILTER absoluteUrl ---
+  eleventyConfig.addFilter("absoluteUrl", function (path, base) {
+    return base.replace(/\/$/, "") + path;
+  });
+
+  // --- FILTER dateISO ---
+  eleventyConfig.addFilter("dateISO", function (date) {
+    var d;
+    if (date instanceof Date) {
+      d = date;
+    } else {
+      d = new Date(date + "T12:00:00");
+    }
+    if (isNaN(d.getTime())) return "";
+    return d.toISOString();
+  });
+
+  // --- COLLECTION posts ---
+  eleventyConfig.addCollection("posts", function (collectionApi) {
+    const posts = require("./src/_data/posts.json");
+    return posts.map(function (post) {
+      return {
+        ...post,
+        url: post.url,
+        date: new Date(post.date + "T12:00:00"),
+      };
+    });
+  });
+
   // --- SHORTCODE criticalCss ---
   eleventyConfig.addShortcode("criticalCss", function () {
     const cssPath = path.join(__dirname, "src/assets/css/main.css");

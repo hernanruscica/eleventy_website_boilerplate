@@ -4,7 +4,7 @@
     "url": "/blog/blog-1/",
     "category": "Categoría 1",
     "tags": ["tag-1", "tag-2", "tag-3"],
-    "date": "15 Ene 2025",
+    "date": "2025-01-15",
     "author": "Autor 1",
     "excerpt": "Descripción 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.",
     "image": "/assets/images/blog/blog-1/blog-1.jpg"
@@ -14,7 +14,7 @@
     "url": "/blog/blog-2/",
     "category": "Categoría 2",
     "tags": ["tag-4", "tag-5", "tag-6"],
-    "date": "20 Feb 2025",
+    "date": "2025-02-20",
     "author": "Autor 2",
     "excerpt": "Descripción 2. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.",
     "image": "/assets/images/blog/blog-2/blog-2.jpg"
@@ -24,7 +24,7 @@
     "url": "/blog/blog-3/",
     "category": "Categoría 3",
     "tags": ["tag-7", "tag-8", "tag-9"],
-    "date": "10 Mar 2025",
+    "date": "2025-03-10",
     "author": "Autor 3",
     "excerpt": "Descripción 3. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.",
     "image": "/assets/images/blog/blog-3/blog-3.jpg"

@@ -1,0 +1,118 @@
+{# JSON-LD Structured Data #}
+{% if page.url === "/" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ site.name }}",
+  "url": "{{ site.url }}",
+  "logo": "{{ site.url }}/assets/images/logo.svg",
+  "description": "{{ site.description }}",
+  "sameAs": [
+    {%- for item in social %}{% if item.url and item.url.startsWith('http') %}
+    "{{ item.url }}"{% endif %}{% if not loop.last %},{% endif %}{% endfor %}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.name }}",
+  "url": "{{ site.url }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ site.url }}/blog/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% endif %}
+
+{% if layout === "base.njk" and category and page.url.startsWith("/blog/") %}
+{% set postImage = site.defaultOGImage %}
+{% for post in posts %}
+  {% if post.url === page.url %}
+    {% set postImage = post.image %}
+  {% endif %}
+{% endfor %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ title }}",
+  "description": "{{ description }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ author or site.author }}"
+  },
+  "datePublished": "{{ date | dateISO }}",
+  "image": "{{ postImage | absoluteUrl(site.url) }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.name }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}/assets/images/logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absoluteUrl(site.url) }}"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "{{ '/' | absoluteUrl(site.url) }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "{{ '/blog/' | absoluteUrl(site.url) }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ title }}"
+    }
+  ]
+}
+</script>
+{% endif %}
+
+{% if page.url.startsWith("/servicios/") and page.url !== "/servicios/" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "{{ '/' | absoluteUrl(site.url) }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Servicios",
+      "item": "{{ '/servicios/' | absoluteUrl(site.url) }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ title }}"
+    }
+  ]
+}
+</script>
+{% endif %}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Nombre del Sitio</title>
+    <link>https://ejemplo.com</link>
+    <description>Boilerplate corporativo estático con Eleventy - Rendimiento, Accesibilidad y SEO.</description>
+    <language>es</language>
+    <atom:link href="https://ejemplo.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Título 1</title>
+      <link>https://ejemplo.com/blog/blog-1/</link>
+      <description>Descripción 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</description>
+      <pubDate>2025-01-15T15:00:00.000Z</pubDate>
+      <guid>https://ejemplo.com/blog/blog-1/</guid>
+    </item>
+    <item>
+      <title>Título 2</title>
+      <link>https://ejemplo.com/blog/blog-2/</link>
+      <description>Descripción 2. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</description>
+      <pubDate>2025-02-20T15:00:00.000Z</pubDate>
+      <guid>https://ejemplo.com/blog/blog-2/</guid>
+    </item>
+    <item>
+      <title>Título 3</title>
+      <link>https://ejemplo.com/blog/blog-3/</link>
+      <description>Descripción 3. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</description>
+      <pubDate>2025-03-10T15:00:00.000Z</pubDate>
+      <guid>https://ejemplo.com/blog/blog-3/</guid>
+    </item>
+  </channel>
+</rss>

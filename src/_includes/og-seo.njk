@@ -1,0 +1,23 @@
+{# SEO Meta Tags - Open Graph + Twitter Cards + Canonical #}
+{% set seoTitle = title or site.name %}
+{% set seoDescription = description or site.description %}
+{% set seoUrl = page.url | absoluteUrl(site.url) %}
+{% set seoImage = ogImage or site.defaultOGImage %}
+{% if seoImage and not seoImage.startsWith("http") %}
+  {% set seoImage = seoImage | absoluteUrl(site.url) %}
+{% endif %}
+
+<link rel="canonical" href="{{ seoUrl }}">
+
+<meta property="og:title" content="{{ seoTitle }}">
+<meta property="og:description" content="{{ seoDescription }}">
+<meta property="og:image" content="{{ seoImage }}">
+<meta property="og:url" content="{{ seoUrl }}">
+<meta property="og:type" content="{{ 'article' if category and page.url.startsWith('/blog/') else 'website' }}">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="{{ site.name }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ seoTitle }}">
+<meta name="twitter:description" content="{{ seoDescription }}">
+<meta name="twitter:image" content="{{ seoImage }}">

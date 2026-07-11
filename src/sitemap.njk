@@ -1,0 +1,29 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {%- for item in site.nav %}
+  <url>
+    <loc>{{ item.url | absoluteUrl(site.url) }}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {%- endfor %}
+  {%- for service in site.services %}
+  <url>
+    <loc>{{ service.url | absoluteUrl(site.url) }}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  {%- endfor %}
+  {%- for post in posts %}
+  <url>
+    <loc>{{ post.url | absoluteUrl(site.url) }}</loc>
+    <lastmod>{{ post.date | dateISO }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  {%- endfor %}
+</urlset>
