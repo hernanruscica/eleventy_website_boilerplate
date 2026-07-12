@@ -47,6 +47,7 @@
     "name": "{{ author or site.author }}"
   },
   "datePublished": "{{ date | dateISO }}",
+  "dateModified": "{{ dateModified | dateISO }}",
   "image": "{{ postImage | absoluteUrl(site.url) }}",
   "publisher": {
     "@type": "Organization",

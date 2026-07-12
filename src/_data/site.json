@@ -1,11 +1,11 @@
 {
   "name": "Nombre del Sitio",
   "url": "https://ejemplo.com",
-  "baseUrl": "https://ejemplo.com",
   "lang": "es",
   "description": "Boilerplate corporativo estático con Eleventy - Rendimiento, Accesibilidad y SEO.",
   "defaultOGImage": "/assets/images/og-default.jpg",
   "author": "Nombre del Autor",
+  "ogLocale": "es_AR",
 "whatsapp": "5491112345678",
 "hero": {
     "title": "Bienvenido al Boilerplate",
