@@ -24,21 +24,21 @@
       "title": "Servicio 1",
       "description": "Descripción del servicio uno. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "image": "src/assets/images/servicios/pexels-plann-2999237-4549414.jpg",
-      "url": "/servicios/diseno-web/",
+      "url": "/servicios/servicio-1/",
       "alt": "Imagen representativa del servicio uno"
     },
     {
       "title": "Servicio 2",
       "description": "Descripción del servicio dos. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "image": "src/assets/images/servicios/pexels-ai25studioai-6207736.jpg",
-      "url": "/servicios/desarrollo-ecommerce/",
+      "url": "/servicios/servicio-2/",
       "alt": "Imagen representativa del servicio dos"
     },
     {
       "title": "Servicio 3",
       "description": "Descripción del servicio tres. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "image": "src/assets/images/servicios/pexels-mikhail-nilov-7988114.jpg",
-      "url": "/servicios/seo-tecnico/",
+      "url": "/servicios/servicio-3/",
       "alt": "Imagen representativa del servicio tres"
     }
   ],

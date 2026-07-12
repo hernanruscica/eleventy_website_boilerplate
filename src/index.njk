@@ -9,23 +9,16 @@ scripts: ['form']
 
 <section class="section" aria-labelledby="heading-services">
   <h2 id="heading-services">Nuestros Servicios</h2>
-  <div class="card-grid">
-    <article class="card">
-      <h3>Servicio Uno</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-      <a href="/servicios/diseno-web/" class="btn" aria-label="Más información sobre Servicio Uno">Saber más</a>
-    </article>
-    <article class="card">
-      <h3>Servicio Dos</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-      <a href="/servicios/desarrollo-ecommerce/" class="btn" aria-label="Más información sobre Servicio Dos">Saber más</a>
-    </article>
-    <article class="card">
-      <h3>Servicio Tres</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
-      <a href="/servicios/seo-tecnico/" class="btn" aria-label="Más información sobre Servicio Tres">Saber más</a>
-    </article>
-  </div>
+    <div class="card-grid">
+      {% for service in site.services %}
+        <article class="card">
+          {% image service.image, service.alt, "showcase_image_thumbnail" %}
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+          <a href="{{ service.url }}" class="btn" aria-label="Más información sobre {{ service.title }}">Saber más</a>
+        </article>
+      {% endfor %}
+    </div>
 </section>
 
 <section id="contacto" class="section" aria-labelledby="heading-contacto">
