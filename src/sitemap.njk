@@ -7,8 +7,12 @@ eleventyExcludeFromCollections: true
   {%- for item in site.nav %}
   <url>
     <loc>{{ item.url | absoluteUrl(site.url) }}</loc>
-    <changefreq>weekly</changefreq>
+    {%- if item.url == "/" %}
+    <priority>1.0</priority>
+    {%- else %}
     <priority>0.8</priority>
+    {%- endif %}
+    <changefreq>weekly</changefreq>
   </url>
   {%- endfor %}
   {%- for service in site.services %}
@@ -18,7 +22,7 @@ eleventyExcludeFromCollections: true
     <priority>0.7</priority>
   </url>
   {%- endfor %}
-  {%- for post in posts %}
+  {%- for post in collections.post %}
   <url>
     <loc>{{ post.url | absoluteUrl(site.url) }}</loc>
     <lastmod>{{ post.date | dateISO }}</lastmod>

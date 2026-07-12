@@ -1,0 +1,25 @@
+---
+layout: base.njk
+---
+
+{% include "hero-simple.njk" %}
+
+<section class="section">
+  <div class="blog-layout">
+    <div class="blog-layout__main">
+      <article class="blog-post">
+        <h1 class="blog-post__title">{{ title }}</h1>
+        <p class="blog-post__byline">
+          Publicado por <strong>{{ author }}</strong> el <strong>{{ date | dateLong }}</strong>.
+        </p>
+        {% if image %}
+        {% set postImgPath = "src" ~ image %}
+        {% image postImgPath, title, "blog_image" %}
+        {% endif %}
+        {{ content | safe }}
+        <a href="/blog/" class="btn">&larr; Volver al blog</a>
+      </article>
+    </div>
+    {% include "post-sidebar.njk" %}
+  </div>
+</section>

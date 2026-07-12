@@ -1,4 +1,4 @@
-{% set categories = posts | uniqueCategories %}
+{% set categories = collections.post | uniqueCategories %}
 <div class="blog-filters" role="group" aria-label="Filtrar artículos">
   <p class="blog-filters__title">Categorías</p>
   <button class="filter-btn active" data-filter="all">Todas</button>

@@ -21,7 +21,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("uniqueCategories", function (posts) {
     const seen = [];
     posts.forEach(function (p) {
-      if (!seen.includes(p.category)) seen.push(p.category);
+      var cat = p.data ? p.data.category : p.category;
+      if (cat && !seen.includes(cat)) seen.push(cat);
     });
     return seen;
   });
@@ -59,15 +60,50 @@ module.exports = function (eleventyConfig) {
   });
 
   // --- COLLECTION posts ---
-  eleventyConfig.addCollection("posts", function (collectionApi) {
-    const posts = require("./src/_data/posts.json");
-    return posts.map(function (post) {
-      return {
-        ...post,
-        url: post.url,
-        date: new Date(post.date + "T12:00:00"),
-      };
-    });
+  eleventyConfig.addCollection("posts", async function (collectionApi) {
+    const Image = (await import("@11ty/eleventy-img")).default;
+    const presetConfig = siteData.imagePresets["blog_image_thumbnail"];
+
+    const posts = collectionApi
+      .getFilteredByTag("post")
+      .sort(function (a, b) {
+        return b.date - a.date;
+      });
+
+    for (var i = 0; i < posts.length; i++) {
+      var post = posts[i];
+      if (post.data && post.data.image) {
+        var srcPath = path.join(__dirname, "src", post.data.image);
+        try {
+          var metadata = await Image(srcPath, {
+            widths: presetConfig.widths,
+            formats: ["avif", "webp", "jpeg"],
+            outputDir: path.join(__dirname, "_site/assets/images"),
+            urlPath: "/assets/images",
+            filenameFormat: function (id, _src, width, format) {
+              var imagesDir = path.join(__dirname, "src/assets/images");
+              var relativeDir = path.relative(imagesDir, path.dirname(_src));
+              var ext = path.extname(_src);
+              var name = path.basename(_src, ext);
+              return path.join(relativeDir, name + "-" + width + "w." + format);
+            },
+          });
+          post.cardImageHtml = Image.generateHTML(metadata, {
+            alt: post.data.title,
+            sizes: presetConfig.sizes,
+            loading: "lazy",
+            decoding: "async",
+          });
+        } catch (err) {
+          console.error("Image processing error for:", post.data.image, err.message);
+          post.cardImageHtml = "";
+        }
+      } else {
+        post.cardImageHtml = "";
+      }
+    }
+
+    return posts;
   });
 
   // --- SHORTCODE criticalCss ---

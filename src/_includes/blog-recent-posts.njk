@@ -1,13 +1,13 @@
 <div class="blog-recent">
   <p class="blog-recent__title">Publicaciones recientes</p>
   <ul class="blog-recent__list">
-    {% for post in posts %}
+    {% for post in collections.post %}
       {% if loop.index <= 5 %}
         <li class="blog-recent__item">
           <a href="{{ post.url }}" class="blog-recent__link">
-            <span class="blog-recent__post-title">{{ post.title }}</span>
+            <span class="blog-recent__post-title">{{ post.data.title }}</span>
             <span class="blog-recent__meta">
-              <span class="blog-recent__category">{{ post.category }}</span> &middot; {{ post.date }}
+              <span class="blog-recent__category">{{ post.data.category }}</span> &middot; {{ post.date }}
             </span>
           </a>
         </li>

@@ -29,11 +29,11 @@
 </script>
 {% endif %}
 
-{% if layout === "base.njk" and category and page.url.startsWith("/blog/") %}
+{% if layout === "post.njk" and page.url.startsWith("/blog/") %}
 {% set postImage = site.defaultOGImage %}
-{% for post in posts %}
+{% for post in collections.post %}
   {% if post.url === page.url %}
-    {% set postImage = post.image %}
+    {% set postImage = post.data.image %}
   {% endif %}
 {% endfor %}
 <script type="application/ld+json">
@@ -83,7 +83,8 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "{{ title }}"
+      "name": "{{ title }}",
+      "item": "{{ page.url | absoluteUrl(site.url) }}"
     }
   ]
 }
@@ -111,7 +112,8 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "{{ title }}"
+      "name": "{{ title }}",
+      "item": "{{ page.url | absoluteUrl(site.url) }}"
     }
   ]
 }

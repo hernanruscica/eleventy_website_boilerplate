@@ -6,6 +6,7 @@
   "defaultOGImage": "/assets/images/og-default.jpg",
   "author": "Nombre del Autor",
   "ogLocale": "es_AR",
+  "twitter": "@usuario",
 "whatsapp": "5491112345678",
 "hero": {
     "title": "Bienvenido al Boilerplate",
