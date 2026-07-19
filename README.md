@@ -186,7 +186,7 @@ Editá las Custom Properties en `src/assets/css/main.css`:
 }
 ```
 
-### Cambiar la fuente
+### Cambiar la fuente  
 
 1. Reemplazá el archivo `src/assets/fonts/mulish-latin.woff2` con tu fuente WOFF2.
 2. Actualizá la declaración `@font-face` en `src/assets/css/main.css`.
